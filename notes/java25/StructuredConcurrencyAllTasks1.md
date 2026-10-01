@@ -1,4 +1,4 @@
-This code(StackSimpleExamples.java) introduces **Structured Concurrency** (`StructuredTaskScope`), a core component of Project Loom designed to eliminate dangling threads, thread leaks, and uncoordinated cancellation.
+This code(StructuredConcurrencyAllTasks1.java) introduces **Structured Concurrency** (`StructuredTaskScope`), a core component of Project Loom designed to eliminate dangling threads, thread leaks, and uncoordinated cancellation.
 
 ### Code Breakdown
 

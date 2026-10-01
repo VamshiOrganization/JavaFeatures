@@ -20,42 +20,44 @@ public class LongRunningThread implements Callable<TaskResponse> {
         this.fail = fail;
     }
 
-    public TaskResponse call()  {
+    public TaskResponse call() {
         long start = System.currentTimeMillis();
         print("Started");
-        int numSeconds=0;
-        while ((numSeconds++)<this.time) {
-            if(Thread.currentThread().isInterrupted()){
-                System.out.println("Interrupted");
+        int numSeconds = 0;
+        while ((numSeconds++) < this.time) {
+            if (Thread.currentThread().isInterrupted()) {
+                print("Interrupted");
                 throwExceptionOnFailure();
             }
-            print("Working..."+numSeconds);
+            print("Working..." + numSeconds);
             try {
                 Thread.sleep(Duration.ofSeconds(1));
-            }catch (Exception e){
+            } catch (Exception e) {
                 throwExceptionOnFailure();
             }
 
         }
-        if(fail){
+        if (fail) {
+            print("Failed");
             throwExceptionOnFailure();
         }
         print("Completed");
         long end = System.currentTimeMillis();
-        return new TaskResponse(this.name,this.output, end-start);
-    }
-    private void throwExceptionOnFailure(){
-        print("Interrupted");
-        throw new RuntimeException(name +": Failed");
+        return new TaskResponse(this.name, this.output, end - start);
     }
 
-    private void print(String message){
-        System.out.printf("> %s : %s\n",name,message);
+    private void throwExceptionOnFailure() {
+
+        throw new RuntimeException(name + ": Failed");
+    }
+
+    private void print(String message) {
+        System.out.printf("> %s : %s\n", name, message);
     }
 
     public static void main(String[] args) throws InterruptedException {
         System.out.println("Main started");
-        LongRunningThread longRunningThread = new LongRunningThread("LongTask1",10,"json-response1",true);
+        LongRunningThread longRunningThread = new LongRunningThread("LongTask1", 10, "json-response1", true);
         try (ExecutorService executorService = Executors.newFixedThreadPool(2)) {
             Future<TaskResponse> future = executorService.submit(longRunningThread::call);
             Thread.sleep(Duration.ofSeconds(5));

@@ -4,7 +4,7 @@ import java.util.concurrent.StructuredTaskScope;
 import java.util.concurrent.StructuredTaskScope.Subtask;
 import java.util.concurrent.StructuredTaskScope.Subtask.State;
 
-public class StackSimpleExamples {
+public class StructuredConcurrencyAllTasks1 {
     public static void main(String[] args) throws Exception {
         System.out.println("Main : Started");
         exampleCompleteAllTasks();
