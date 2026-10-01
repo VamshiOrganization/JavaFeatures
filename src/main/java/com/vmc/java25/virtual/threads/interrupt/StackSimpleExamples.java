@@ -1,11 +1,8 @@
 package com.vmc.java25.virtual.threads.interrupt;
 
-import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.StructuredTaskScope;
 import java.util.concurrent.StructuredTaskScope.Subtask;
 import java.util.concurrent.StructuredTaskScope.Subtask.State;
-import java.util.function.Supplier;
 
 public class StackSimpleExamples {
     public static void main(String[] args) throws Exception {
@@ -37,9 +34,6 @@ public class StackSimpleExamples {
             } else if (hotState == State.FAILED) {
                 System.out.println(hotSubTask.exception());
             }
-            List<String> list=null;
-            Supplier<? extends Throwable> a;
-            Optional.of(list).orElseThrow(a);
 
         }
     }
