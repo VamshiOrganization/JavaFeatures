@@ -1,4 +1,4 @@
-package com.vmc.java25;
+package com.vmc.java25.virtual.threads.oom;
 
 import javax.management.MBeanServer;
 import java.lang.management.ManagementFactory;
